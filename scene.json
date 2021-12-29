@@ -1,0 +1,70 @@
+{
+  "display": {
+    "title": "Purple Bee Concert Park",
+    "description": "Livestream concerts from Austin, TX.",
+    "favicon": "favicon_asset",
+    "navmapThumbnail": "scene-thumbnail.png"
+  },
+  "owner": "eboz",
+  "contact": {
+    "name": "DBOZ#18eb",
+    "email": "info@purplebee.org"
+  },
+  "main": "bin/game.js",
+  "tags": [
+    "music",
+    "livestream",
+    "concert",
+    "venue",
+    "live",
+    "poap",
+    "festival"
+  ],
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 8,
+        "y": 0,
+        "z": 18
+      },
+      "cameraTarget": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      }
+    }
+  ],
+  "scene": {
+    "parcels": [
+      "-49,81","-49,82"
+    ],
+    "base": "-49,81"
+  },
+  "communications": {
+    "type": "webrtc",
+    "signalling": "https://signalling-01.decentraland.org"
+  },
+  "policy": {
+    "contentRating": "E",
+    "fly": true,
+    "voiceEnabled": true,
+    "blacklist": [],
+    "teleportPosition": ""
+  },
+  "source": {
+    "version": 2,
+    "origin": "builder",
+    "projectId": "0301c33c-9a06-4043-9de0-ee328e1007bd",
+    "point": {
+      "x": 0,
+      "y": 0
+    },
+    "rotation": "west",
+    "layout": {
+      "rows": 1,
+      "cols": 1
+    }
+  }
+}
