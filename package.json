@@ -1,5 +1,5 @@
 {
-  "name": "0301c33c-9a06-4043-9de0-ee328e1007bd",
+  "name": "Purple-Bee-DCL",
   "version": "1.0.0",
   "description": "Purple Bee TV - Decentraland Estate",
   "scripts": {
@@ -20,7 +20,9 @@
     "@dcl/ui-scene-utils": "^1.7.1",
     "cors": "^2.8.5",
     "eth-connect": "^4.0.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "@types/cannon": "^0.1.4",
+    "cannon": "github:schteppe/cannon.js"
   },
   "bundleDependencies": [
     "@dcl/ecs-scene-utils",
