@@ -29,7 +29,7 @@ _scene.addComponentOrReplace(transform)
           scale: new Vector3(1, 1, 1)
         })
         catwalkHill.addComponentOrReplace(transform_catwalkHill)
-        const gltfShape_catwalkHill = new GLTFShape("GLB/Catwalk-Hill-Scene.glb")
+        const gltfShape_catwalkHill = new GLTFShape("GLB/Catwalk-Hill-Scene4.glb")
         gltfShape_catwalkHill.withCollisions = true
         gltfShape_catwalkHill.isPointerBlocker = true
         gltfShape_catwalkHill.visible = true
@@ -44,9 +44,9 @@ _scene.addComponentOrReplace(transform)
         engine.addEntity(videoStream)
         videoStream.setParent(_scene)
         const transform_videoStream = new Transform({
-          position: new Vector3(8, 0.5, 0.4),
+          position: new Vector3(8, 0.92, 0.4),
           rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(5, 5, 5)
+          scale: new Vector3(4.5, 4.5, 4.5)
         })
         videoStream.addComponentOrReplace(transform_videoStream)
 
@@ -66,13 +66,14 @@ _scene.addComponentOrReplace(transform)
 
 
 /** SCREEN DRESSING (neon tubes) */
-        const purpleNeonTube = new Entity('purpleNeonTube')
+       /*
+       const purpleNeonTube = new Entity('purpleNeonTube')
         engine.addEntity(purpleNeonTube)
         purpleNeonTube.setParent(_scene)
         const transform14 = new Transform({
-          position: new Vector3(0.5000000596046448, 4.74, 0.54),
+          position: new Vector3(1.3, 4.7, 0.54),
           rotation: new Quaternion(-0.20526227355003357, -0.20526227355003357, 0.6766590476036072, 0.6766589879989624),
-          scale: new Vector3(4.929162502288818, 0.9900015592575073, 0.9900001287460327)
+          scale: new Vector3(5, 1.5, 0.75)
         })
         purpleNeonTube.addComponentOrReplace(transform14)
         const gltfShape6 = new GLTFShape("GLB/NeonLightTube_03/NeonLightTube_03.glb")
@@ -86,19 +87,21 @@ _scene.addComponentOrReplace(transform)
         purpleNeonTube2.setParent(_scene)
         purpleNeonTube2.addComponentOrReplace(gltfShape6)
         const transform15 = new Transform({
-          position: new Vector3(15.51, 4.74, 0.54),
+          position: new Vector3(14.9, 4.7, 0.54),
           rotation: new Quaternion(-0.20526227355003357, -0.20526227355003357, 0.6766590476036072, 0.6766589879989624),
-          scale: new Vector3(4.929162502288818, 0.9900015592575073, 0.9900001287460327)
+          scale: new Vector3(5, 1.5, 0.75)
         })
         purpleNeonTube2.addComponentOrReplace(transform15)
+        */
 
+        /*
         const wallcornerPurple = new Entity('wallcornerPurple')
         engine.addEntity(wallcornerPurple)
         wallcornerPurple.setParent(_scene)
         const transform18 = new Transform({
-          position: new Vector3(15.506645202636719, 9.135, 0.5),
+          position: new Vector3(15.506645202636719, 8.75, 0.5),
           rotation: new Quaternion(-0.28199416399002075, 0.2810767590999603, 0.6479364037513733, 0.6493486166000366),
-          scale: new Vector3(0.13071277737617493, 3.80124831199646, 0.13071413338184357)
+          scale: new Vector3(0.08, 3.80124831199646, 0.1)
         })
         wallcornerPurple.addComponentOrReplace(transform18)
         const gltfShape8 = new GLTFShape("GLB/PurpleCorner.glb")
@@ -106,18 +109,20 @@ _scene.addComponentOrReplace(transform)
         gltfShape8.isPointerBlocker = true
         gltfShape8.visible = true
         wallcornerPurple.addComponentOrReplace(gltfShape8)
-
+        */
+       
+        /*
         const purpleNeonTube3 = new Entity('purpleNeonTube3')
         engine.addEntity(purpleNeonTube3)
         purpleNeonTube3.setParent(_scene)
         purpleNeonTube3.addComponentOrReplace(gltfShape6)
         const transform19 = new Transform({
-          position: new Vector3(8.000000953674316, 8.97, 0.54),
+          position: new Vector3(8.000000953674316, 8.585, 0.54),
           rotation: new Quaternion(-0.2902846932411194, 1.4901161193847656e-8, 2.9802322387695312e-8, 0.9569404125213623),
           scale: new Vector3(8.646116256713867, 0.9900016784667969, 0.9900001287460327)
         })
         purpleNeonTube3.addComponentOrReplace(transform19)
-
+        */
 
 /** END SCREEN DRESSING (neon tubes) */
 
@@ -127,14 +132,27 @@ _scene.addComponentOrReplace(transform)
         engine.addEntity(galleryInfoPurple)
         galleryInfoPurple.setParent(_scene)
         const transform_galleryInfoPurple = new Transform({
-          position: new Vector3(8.45, 1.5, 15.5),
-          rotation: new Quaternion(0, 0, 0, 1),
-          scale: new Vector3(0.5, 0.5, 0.75)
+          position: new Vector3(7.60, 3.02, 31),
+          rotation: new Quaternion(0, -1, 0, 0),
+          scale: new Vector3(0.5, 0.5, 0.5)
         })
         galleryInfoPurple.addComponentOrReplace(transform_galleryInfoPurple)
         
+        const galleryInfoScript = new GalleryInfoScript()
+        galleryInfoScript.init()
+        galleryInfoScript.spawn(
+          galleryInfoPurple, 
+          {
+            "text":"Welcome to\nPurple Bee TV\nLive-streaming\nconcerts\n\nget info & donate:\npurplebee.org\n\n@purplebeetv\non socials",
+            "fontSize":7,
+            "font":"SF_Heavy",
+            "color":"#000000",
+            "url":"https://purplebee.org"
+          }, 
+          createChannel(channelId, galleryInfoPurple, channelBus)
+        )
 
-
+        /*
         const lampPurple = new Entity('lampPurple')
         engine.addEntity(lampPurple)
         lampPurple.setParent(_scene)
@@ -160,21 +178,9 @@ _scene.addComponentOrReplace(transform)
           scale: new Vector3(1, 1, 1)
         })
         lampPurple2.addComponentOrReplace(transform26)
+        */
 
-
-        const galleryInfoScript = new GalleryInfoScript()
-        galleryInfoScript.init()
-        galleryInfoScript.spawn(
-          galleryInfoPurple, 
-          {
-            "text":"Welcome to\nPurple Bee TV\nLive-streaming\nconcerts\n\nget info & donate:\npurplebee.org\n\n@purplebeetv\non socials",
-            "fontSize":7,
-            "font":"SF_Heavy",
-            "color":"#000000",
-            "url":"https://purplebee.org"
-          }, 
-          createChannel(channelId, galleryInfoPurple, channelBus)
-        )
+        
 
 
 /** END INFO SIGN */
@@ -195,11 +201,12 @@ _scene.addComponentOrReplace(transform)
 
           // Base scene
           
+          /*
           const base = new Entity()
           base.addComponent(new GLTFShape("models/baseLight.glb"))
           base.addComponent(new Transform({ scale: new Vector3(2, 2, 2) }))
           engine.addEntity(base)
-          
+          */
 
           // Box
           const boxMaterial = new Material()
@@ -207,9 +214,9 @@ _scene.addComponentOrReplace(transform)
 
           const box = new Entity()
           box.addComponent(boxMaterial)
-          box.addComponent(new GLTFShape("GLB/DonkOrange3.glb"))
+          box.addComponent(new GLTFShape("GLB/DonkModel4.glb"))
           box.addComponent(new Transform({
-            position: new Vector3(8, 2, 3)
+            position: new Vector3(8, 2.5, 3)
           }))
           engine.addEntity(box)
 
@@ -239,7 +246,7 @@ _scene.addComponentOrReplace(transform)
           const boxShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
           const boxBody = new CANNON.Body({ mass: 5 })
           boxBody.addShape(boxShape)
-          boxBody.position.set(8, 2, 3)
+          boxBody.position.set(8, 2.5, 3)
           boxBody.linearDamping = 0.4 // Round will keep translating even with friction so you need linearDamping
           boxBody.angularDamping = 0.4 // Round bodies will keep rotating even with friction so you need angularDamping
           world.addBody(boxBody) // Add body to the world
@@ -251,7 +258,7 @@ _scene.addComponentOrReplace(transform)
           })
           groundBody.addShape(planeShape)
           groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2) // Reorient ground plane to be in the y-axis
-          groundBody.position.y = 0.5 // Thickness of ground base model
+          groundBody.position.y = 0.8 // Thickness of ground base model
           world.addBody(groundBody)
 
           // Invisible walls
