@@ -23,7 +23,7 @@ export default class PlainText implements IScript<Props> {
         text.font = new Font(Fonts.SanFrancisco)
         break
       case 'SF_Heavy':
-        text.font = new Font(Fonts.SanFrancisco_Heavy)
+        text.font = new Font(Fonts.SansSerif_Heavy)
         break
     }
 
