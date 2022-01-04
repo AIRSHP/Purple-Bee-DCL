@@ -122,12 +122,12 @@ const blackholec = new Entity('blackholec')
 engine.addEntity(blackholec)
 blackholec.setParent(_scene)
 const transform_blackholec = new Transform({
-  position: new Vector3(8, 0, 16),
+  position: new Vector3(8, 1, 6),
   rotation: new Quaternion(0, .5, 0, 0),
   scale: new Vector3(1,1,1)
 })
 blackholec.addComponentOrReplace(transform_blackholec)
-const gltfShape_blackholec = new GLTFShape("GLB/Blackhole05.glb")
+const gltfShape_blackholec = new GLTFShape("GLB/Blackhole03.glb")
 //gltfShape_blackholec.withCollisions = true
 //gltfShape_blackholec.isPointerBlocker = true
 gltfShape_blackholec.visible = true
@@ -141,29 +141,29 @@ const blackholeb = new Entity('blackholeb')
 engine.addEntity(blackholeb)
 blackholeb.setParent(_scene)
 const transform_blackholeb = new Transform({
-  position: new Vector3(8, 0, 16),
-  rotation: new Quaternion(0, .5, 0, 0),
+  position: new Vector3(8, .9, 6),
+  rotation: new Quaternion(0, 0, 0, 0),
   scale: new Vector3(1,1,1)
 })
 blackholeb.addComponentOrReplace(transform_blackholeb)
-const gltfShape_blackholeb = new GLTFShape("GLB/Blackhole03.glb")
+const gltfShape_blackholeb = new GLTFShape("GLB/Blackhole04.glb")
 //gltfShape_blackholeb.withCollisions = true
 //gltfShape_blackholeb.isPointerBlocker = true
 gltfShape_blackholeb.visible = true
 blackholeb.addComponentOrReplace(gltfShape_blackholeb)
 
-/* Blackhole Dancefloor 
+/* Blackhole Dancefloor */
 // Blackhole 3
 const blackhole3 = new Entity('blackhole3')
 engine.addEntity(blackhole3)
 blackhole3.setParent(_scene)
 const transform_blackhole3 = new Transform({
-  position: new Vector3(8, 1, 16),
+  position: new Vector3(8, 0.8, 6),
   rotation: new Quaternion(0, .5, 0, 0),
   scale: new Vector3(1,1,1)
 })
 blackhole3.addComponentOrReplace(transform_blackhole3)
-const gltfShape_blackhole3 = new GLTFShape("GLB/Blackhole01.glb")
+const gltfShape_blackhole3 = new GLTFShape("GLB/Blackhole05.glb")
 gltfShape_blackhole3.withCollisions = true
 gltfShape_blackhole3.isPointerBlocker = true
 gltfShape_blackhole3.visible = true
