@@ -57,13 +57,117 @@ _scene.addComponentOrReplace(transform)
           scale: new Vector3(1,1,1)
         })
         catwalkHill.addComponentOrReplace(transform_catwalkHill)
-        const gltfShape_catwalkHill = new GLTFShape("GLB/Decentraland Arena7dboz.glb")
+        const gltfShape_catwalkHill = new GLTFShape("GLB/Decentraland Arena7.glb")
         gltfShape_catwalkHill.withCollisions = true
         gltfShape_catwalkHill.isPointerBlocker = true
         gltfShape_catwalkHill.visible = true
         catwalkHill.addComponentOrReplace(gltfShape_catwalkHill)
 
+/* Flying Blimp */
+        
 
+const blimp = new Entity('catwalkHill')
+engine.addEntity(catwalkHill)
+blimp.setParent(_scene)
+const transform_blimp = new Transform({
+  position: new Vector3(8, 16, 16),
+  //rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+blimp.addComponentOrReplace(transform_blimp)
+const gltfShape_blimp = new GLTFShape("GLB/Blimp.glb")
+gltfShape_blimp.withCollisions = true
+gltfShape_blimp.isPointerBlocker = true
+gltfShape_blimp.visible = true
+blimp.addComponentOrReplace(gltfShape_blimp)
+
+/* Cube Rotate PBcube */
+
+const PBcube = new Entity('PBcube')
+engine.addEntity(PBcube)
+PBcube.setParent(_scene)
+const transform_PBcube = new Transform({
+  position: new Vector3(8, 12, 30),
+  rotation: new Quaternion(0, 0, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+PBcube.addComponentOrReplace(transform_PBcube)
+const gltfShape_PBcube = new GLTFShape("GLB/Bee Cube Spin.glb")
+gltfShape_PBcube.withCollisions = true
+gltfShape_PBcube.isPointerBlocker = true
+gltfShape_PBcube.visible = true
+PBcube.addComponentOrReplace(gltfShape_PBcube)
+
+/* Blackhole Dancefloor */
+
+
+const blackhole = new Entity('blackhole')
+engine.addEntity(blackhole)
+blackhole.setParent(_scene)
+const transform_blackhole = new Transform({
+  position: new Vector3(8, 0, 16),
+  rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+blackhole.addComponentOrReplace(transform_blackhole)
+const gltfShape_blackhole = new GLTFShape("GLB/RedLight.glb")
+gltfShape_blackhole.withCollisions = true
+//gltfShape_blackhole.isPointerBlocker = true
+gltfShape_blackhole.visible = true
+blackhole.addComponentOrReplace(gltfShape_blackhole)
+
+/* Blackhole Dancefloor 
+// Blackhole 2
+const blackholec = new Entity('blackholec')
+engine.addEntity(blackholec)
+blackholec.setParent(_scene)
+const transform_blackholec = new Transform({
+  position: new Vector3(8, 0, 16),
+  rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+blackholec.addComponentOrReplace(transform_blackholec)
+const gltfShape_blackholec = new GLTFShape("GLB/Blackhole05.glb")
+//gltfShape_blackholec.withCollisions = true
+//gltfShape_blackholec.isPointerBlocker = true
+gltfShape_blackholec.visible = true
+blackholec.addComponentOrReplace(gltfShape_blackholec)
+
+
+
+/* Blackhole Dancefloor */
+// Blackhole 3
+const blackholeb = new Entity('blackholeb')
+engine.addEntity(blackholeb)
+blackholeb.setParent(_scene)
+const transform_blackholeb = new Transform({
+  position: new Vector3(8, 0, 16),
+  rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+blackholeb.addComponentOrReplace(transform_blackholeb)
+const gltfShape_blackholeb = new GLTFShape("GLB/Blackhole03.glb")
+//gltfShape_blackholeb.withCollisions = true
+//gltfShape_blackholeb.isPointerBlocker = true
+gltfShape_blackholeb.visible = true
+blackholeb.addComponentOrReplace(gltfShape_blackholeb)
+
+/* Blackhole Dancefloor 
+// Blackhole 3
+const blackhole3 = new Entity('blackhole3')
+engine.addEntity(blackhole3)
+blackhole3.setParent(_scene)
+const transform_blackhole3 = new Transform({
+  position: new Vector3(8, 1, 16),
+  rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+blackhole3.addComponentOrReplace(transform_blackhole3)
+const gltfShape_blackhole3 = new GLTFShape("GLB/Blackhole01.glb")
+gltfShape_blackhole3.withCollisions = true
+gltfShape_blackhole3.isPointerBlocker = true
+gltfShape_blackhole3.visible = true
+blackhole3.addComponentOrReplace(gltfShape_blackhole3)
 
 /* video screen */
 /****************/
@@ -72,7 +176,7 @@ _scene.addComponentOrReplace(transform)
         engine.addEntity(videoStream)
         videoStream.setParent(_scene)
         const transform_videoStream = new Transform({
-          position: new Vector3(8, 0.92, 0.4),
+          position: new Vector3(8, 2.92, 0.4),
           rotation: new Quaternion(0, 0, 0, 1),
           scale: new Vector3(4.5, 4.5, 4.5)
         })
