@@ -84,73 +84,66 @@ const blackhole1 = new Entity('blackhole1')
 engine.addEntity(blackhole1)
 blackhole1.setParent(_scene)
 const transform_blackhole1 = new Transform({
-  position: new Vector3(8, 1, 6),
+  position: new Vector3(8, .93, 7.6),
   rotation: new Quaternion(0, .5, 0, 0),
-  scale: new Vector3(1,1,1)
+  scale: new Vector3(.85,.85,.85)
 })
 blackhole1.addComponentOrReplace(transform_blackhole1)
-const gltfShape_blackhole1 = new GLTFShape("GLB/BlackholeLayers/BH01.glb")
-gltfShape_blackhole1.withCollisions = true
+const gltfShape_blackhole1 = new GLTFShape("GLB/BlackholeLayers/BH03.glb")
+gltfShape_blackhole1.withCollisions = false
 gltfShape_blackhole1.isPointerBlocker = true
 gltfShape_blackhole1.visible = true
 blackhole1.addComponentOrReplace(gltfShape_blackhole1)
 
-/* Blackhole Dancefloor 2 */
+//Blackhole Dancefloor 2
 const blackhole2 = new Entity('blackhole2')
 engine.addEntity(blackhole2)
 blackhole2.setParent(blackhole1)
 const transform_blackhole2 = new Transform({
-  position: new Vector3(0,-0.2,0),
+  position: new Vector3(0,-0.1,0),
 })
 blackhole2.addComponentOrReplace(transform_blackhole2)
-const gltfShape_blackhole2 = new GLTFShape("GLB/BlackholeLayers/BH02.glb")
-gltfShape_blackhole2.withCollisions = true
-gltfShape_blackhole2.isPointerBlocker = true
+const gltfShape_blackhole2 = new GLTFShape("GLB/BlackholeLayers/BH04.glb")
 gltfShape_blackhole2.visible = true
 blackhole2.addComponentOrReplace(gltfShape_blackhole2)
 
-/* Blackhole Dancefloor 3 */
+//Blackhole Dancefloor 3
 const blackhole3 = new Entity('blackhole3')
 engine.addEntity(blackhole3)
 blackhole3.setParent(blackhole1)
 const transform_blackhole3 = new Transform({
-  position: new Vector3(0,-0.3,0),
+  position: new Vector3(0,-0.2,0),
 })
 blackhole3.addComponentOrReplace(transform_blackhole3)
-const gltfShape_blackhole3 = new GLTFShape("GLB/BlackholeLayers/BH03.glb")
-gltfShape_blackhole3.withCollisions = true
-gltfShape_blackhole3.isPointerBlocker = true
+const gltfShape_blackhole3 = new GLTFShape("GLB/BlackholeLayers/BH02.glb")
 gltfShape_blackhole3.visible = true
 blackhole3.addComponentOrReplace(gltfShape_blackhole3)
 
 
-/* Blackhole Dancefloor 4 */
+//Blackhole Dancefloor 4
 const blackhole4 = new Entity('blackhole4')
 engine.addEntity(blackhole4)
 blackhole4.setParent(blackhole1)
 const transform_blackhole4 = new Transform({
-  position: new Vector3(0,-0.4,0),
+  position: new Vector3(0,-0.3,0),
 })
 blackhole4.addComponentOrReplace(transform_blackhole4)
-const gltfShape_blackhole4 = new GLTFShape("GLB/BlackholeLayers/BH04.glb")
-gltfShape_blackhole4.withCollisions = true
-gltfShape_blackhole4.isPointerBlocker = true
+const gltfShape_blackhole4 = new GLTFShape("GLB/BlackholeLayers/BH01.glb")
 gltfShape_blackhole4.visible = true
 blackhole4.addComponentOrReplace(gltfShape_blackhole4)
 
-/* Blackhole Dancefloor 5 */
+//Blackhole Dancefloor 5 
 const blackhole5 = new Entity('blackhole5')
 engine.addEntity(blackhole5)
 blackhole5.setParent(blackhole1)
 const transform_blackhole5 = new Transform({
-  position: new Vector3(0,-0.5,0),
+  position: new Vector3(0,-0.4,0),
 })
 blackhole5.addComponentOrReplace(transform_blackhole5)
 const gltfShape_blackhole5 = new GLTFShape("GLB/BlackholeLayers/BH05.glb")
-gltfShape_blackhole5.withCollisions = true
-gltfShape_blackhole5.isPointerBlocker = true
 gltfShape_blackhole5.visible = true
 blackhole5.addComponentOrReplace(gltfShape_blackhole5)
+
 
 
 /* Red Light */
