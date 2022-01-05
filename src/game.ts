@@ -162,6 +162,17 @@ gltfShape_redlight.withCollisions = true
 gltfShape_redlight.visible = true
 redlight.addComponentOrReplace(gltfShape_redlight)
 
+const redlight2 = new Entity('redlight2')
+engine.addEntity(redlight2)
+redlight2.setParent(redlight)
+const transform_redlight2 = new Transform({
+  position: new Vector3(14, 0, 0),
+})
+redlight2.addComponentOrReplace(transform_redlight2)
+const gltfShape_redlight2 = new GLTFShape("GLB/RedLight.glb")
+gltfShape_redlight2.visible = true
+redlight2.addComponentOrReplace(gltfShape_redlight2)
+
 
 
 /* video screen */

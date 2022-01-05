@@ -1,3 +1,5 @@
+import { triggerEmote, PredefinedEmote } from "@decentraland/RestrictedActions"
+
 export type Props = {
   onClick?: Actions
   onActivate?: Actions
@@ -142,6 +144,7 @@ export default class Button implements IScript<Props> {
           () => {
             log('clicked')
             channel.sendActions(props.onClick)
+            triggerEmote({ predefined: PredefinedEmote.HEAD_EXPLODDE })
           },
           {
             button: ActionButton.POINTER,
