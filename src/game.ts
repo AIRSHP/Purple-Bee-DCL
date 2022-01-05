@@ -2,17 +2,13 @@ import { createChannel } from '../node_modules/decentraland-builder-scripts/chan
 import { createInventory } from '../node_modules/decentraland-builder-scripts/inventory'
 import ImagePanel from "../imagePanel/src/item"
 import { sceneMessageBus } from './messageBus'
-
-
-
 import VideoScreenScript from "../videoStream/src/item"
-//import GalleryInfoScript from "../galleryInfoSign/src/item"
+
 
 const channelId = Math.random().toString(16).slice(2)
 const channelBus = new MessageBus()
 const inventory = createInventory(UICanvas, UIContainerStack, UIImage)
 const options = { inventory }
-
 
 
 const _scene = new Entity('_scene')
@@ -26,29 +22,29 @@ _scene.addComponentOrReplace(transform)
 
 
 
-/* Catwalk Structure + Hill */
+/* Main Structure */
         
 
-        const catwalkHill = new Entity('catwalkHill')
-        engine.addEntity(catwalkHill)
-        catwalkHill.setParent(_scene)
-        const transform_catwalkHill = new Transform({
+        const mainStructure = new Entity('mainStructure ')
+        engine.addEntity(mainStructure )
+        mainStructure .setParent(_scene)
+        const transform_mainStructure  = new Transform({
           position: new Vector3(8, 0, 16),
           rotation: new Quaternion(0, .5, 0, 0),
           scale: new Vector3(1,1,1)
         })
-        catwalkHill.addComponentOrReplace(transform_catwalkHill)
-        const gltfShape_catwalkHill = new GLTFShape("GLB/Decentraland Arena7.glb")
-        gltfShape_catwalkHill.withCollisions = true
-        gltfShape_catwalkHill.isPointerBlocker = true
-        gltfShape_catwalkHill.visible = true
-        catwalkHill.addComponentOrReplace(gltfShape_catwalkHill)
+        mainStructure .addComponentOrReplace(transform_mainStructure )
+        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena7.glb")
+        gltfShape_mainStructure .withCollisions = true
+        gltfShape_mainStructure .isPointerBlocker = true
+        gltfShape_mainStructure .visible = true
+        mainStructure .addComponentOrReplace(gltfShape_mainStructure)
+
 
 /* Flying Blimp */
-        
-
+    
 const blimp = new Entity('blimp')
-engine.addEntity(catwalkHill)
+engine.addEntity(blimp)
 blimp.setParent(_scene)
 const transform_blimp = new Transform({
   position: new Vector3(8, 16, 16),
@@ -79,75 +75,101 @@ gltfShape_PBcube.isPointerBlocker = true
 gltfShape_PBcube.visible = true
 PBcube.addComponentOrReplace(gltfShape_PBcube)
 
-/* Blackhole Dancefloor */
 
-const blackhole = new Entity('blackhole')
-engine.addEntity(blackhole)
-blackhole.setParent(_scene)
-const transform_blackhole = new Transform({
-  position: new Vector3(8, 0, 16),
-  rotation: new Quaternion(0, .5, 0, 0),
-  scale: new Vector3(1,1,1)
-})
-blackhole.addComponentOrReplace(transform_blackhole)
-const gltfShape_blackhole = new GLTFShape("GLB/RedLight.glb")
-gltfShape_blackhole.withCollisions = true
-//gltfShape_blackhole.isPointerBlocker = true
-gltfShape_blackhole.visible = true
-blackhole.addComponentOrReplace(gltfShape_blackhole)
 
-/* Blackhole Dancefloor 
-// Blackhole 2
-const blackholec = new Entity('blackholec')
-engine.addEntity(blackholec)
-blackholec.setParent(_scene)
-const transform_blackholec = new Transform({
+
+/* Blackhole Dancefloor 1 (Parent) */
+
+const blackhole1 = new Entity('blackhole1')
+engine.addEntity(blackhole1)
+blackhole1.setParent(_scene)
+const transform_blackhole1 = new Transform({
   position: new Vector3(8, 1, 6),
   rotation: new Quaternion(0, .5, 0, 0),
   scale: new Vector3(1,1,1)
 })
-blackholec.addComponentOrReplace(transform_blackholec)
-const gltfShape_blackholec = new GLTFShape("GLB/Blackhole03.glb")
-//gltfShape_blackholec.withCollisions = true
-//gltfShape_blackholec.isPointerBlocker = true
-gltfShape_blackholec.visible = true
-blackholec.addComponentOrReplace(gltfShape_blackholec)
+blackhole1.addComponentOrReplace(transform_blackhole1)
+const gltfShape_blackhole1 = new GLTFShape("GLB/BlackholeLayers/BH01.glb")
+gltfShape_blackhole1.withCollisions = true
+gltfShape_blackhole1.isPointerBlocker = true
+gltfShape_blackhole1.visible = true
+blackhole1.addComponentOrReplace(gltfShape_blackhole1)
 
-
-
-/* Blackhole Dancefloor */
-// Blackhole 3
-const blackholeb = new Entity('blackholeb')
-engine.addEntity(blackholeb)
-blackholeb.setParent(_scene)
-const transform_blackholeb = new Transform({
-  position: new Vector3(8, .9, 6),
-  rotation: new Quaternion(0, 0, 0, 0),
-  scale: new Vector3(1,1,1)
+/* Blackhole Dancefloor 2 */
+const blackhole2 = new Entity('blackhole2')
+engine.addEntity(blackhole2)
+blackhole2.setParent(blackhole1)
+const transform_blackhole2 = new Transform({
+  position: new Vector3(0,-0.2,0),
 })
-blackholeb.addComponentOrReplace(transform_blackholeb)
-const gltfShape_blackholeb = new GLTFShape("GLB/Blackhole04.glb")
-//gltfShape_blackholeb.withCollisions = true
-//gltfShape_blackholeb.isPointerBlocker = true
-gltfShape_blackholeb.visible = true
-blackholeb.addComponentOrReplace(gltfShape_blackholeb)
+blackhole2.addComponentOrReplace(transform_blackhole2)
+const gltfShape_blackhole2 = new GLTFShape("GLB/BlackholeLayers/BH02.glb")
+gltfShape_blackhole2.withCollisions = true
+gltfShape_blackhole2.isPointerBlocker = true
+gltfShape_blackhole2.visible = true
+blackhole2.addComponentOrReplace(gltfShape_blackhole2)
 
-/* Blackhole Dancefloor */
-// Blackhole 3
+/* Blackhole Dancefloor 3 */
 const blackhole3 = new Entity('blackhole3')
 engine.addEntity(blackhole3)
-blackhole3.setParent(_scene)
+blackhole3.setParent(blackhole1)
 const transform_blackhole3 = new Transform({
-  position: new Vector3(8, 0.8, 6),
-  rotation: new Quaternion(0, .5, 0, 0),
-  scale: new Vector3(1,1,1)
+  position: new Vector3(0,-0.3,0),
 })
 blackhole3.addComponentOrReplace(transform_blackhole3)
-const gltfShape_blackhole3 = new GLTFShape("GLB/Blackhole05.glb")
+const gltfShape_blackhole3 = new GLTFShape("GLB/BlackholeLayers/BH03.glb")
 gltfShape_blackhole3.withCollisions = true
 gltfShape_blackhole3.isPointerBlocker = true
 gltfShape_blackhole3.visible = true
 blackhole3.addComponentOrReplace(gltfShape_blackhole3)
+
+
+/* Blackhole Dancefloor 4 */
+const blackhole4 = new Entity('blackhole4')
+engine.addEntity(blackhole4)
+blackhole4.setParent(blackhole1)
+const transform_blackhole4 = new Transform({
+  position: new Vector3(0,-0.4,0),
+})
+blackhole4.addComponentOrReplace(transform_blackhole4)
+const gltfShape_blackhole4 = new GLTFShape("GLB/BlackholeLayers/BH04.glb")
+gltfShape_blackhole4.withCollisions = true
+gltfShape_blackhole4.isPointerBlocker = true
+gltfShape_blackhole4.visible = true
+blackhole4.addComponentOrReplace(gltfShape_blackhole4)
+
+/* Blackhole Dancefloor 5 */
+const blackhole5 = new Entity('blackhole5')
+engine.addEntity(blackhole5)
+blackhole5.setParent(blackhole1)
+const transform_blackhole5 = new Transform({
+  position: new Vector3(0,-0.5,0),
+})
+blackhole5.addComponentOrReplace(transform_blackhole5)
+const gltfShape_blackhole5 = new GLTFShape("GLB/BlackholeLayers/BH05.glb")
+gltfShape_blackhole5.withCollisions = true
+gltfShape_blackhole5.isPointerBlocker = true
+gltfShape_blackhole5.visible = true
+blackhole5.addComponentOrReplace(gltfShape_blackhole5)
+
+
+/* Red Light */
+const redlight = new Entity('redlight')
+engine.addEntity(redlight)
+redlight.setParent(_scene)
+const transform_redlight = new Transform({
+  position: new Vector3(8, 0, 16),
+  rotation: new Quaternion(0, .5, 0, 0),
+  scale: new Vector3(1,1,1)
+})
+redlight.addComponentOrReplace(transform_redlight)
+const gltfShape_redlight = new GLTFShape("GLB/RedLight.glb")
+gltfShape_redlight.withCollisions = true
+//gltfShape_redlight.isPointerBlocker = true
+gltfShape_redlight.visible = true
+redlight.addComponentOrReplace(gltfShape_redlight)
+
+
 
 /* video screen */
 /****************/
@@ -171,7 +193,7 @@ blackhole3.addComponentOrReplace(gltfShape_blackhole3)
             "controlDist":20,
             "onClick":[{"entityName":"videoStream","actionId":"toggle","values":{}}],
             "image":"https://purplebee.org/wp-content/uploads/purple-bee-live-slate.jpg",
-            //"station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
+            "station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
           }, 
           createChannel(channelId, videoStream, channelBus)
         )
