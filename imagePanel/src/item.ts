@@ -19,24 +19,15 @@ export default class SignPost implements IScript<Props> {
     let url = props.image
 
     let QRTexture = new Texture(url)
-    let QRMaterial = new Material()
     let QRMaterialB = new BasicMaterial()
     QRMaterialB.texture = QRTexture
-    QRMaterial.metallic = 0
-    QRMaterial.roughness = 1
-    QRMaterial.specularIntensity = 0
-    QRMaterial.transparencyMode = 1
-    QRMaterial.albedoTexture = QRTexture
- 
-    
+
+
     let QRPlane = new Entity()
     QRPlane.setParent(host)
     QRPlane.addComponent(new PlaneShape())
-    if(props.basic){
-      QRPlane.addComponent(QRMaterialB)
-    }else{
-      QRPlane.addComponent(QRMaterial)
-    }
+    QRPlane.addComponent(QRMaterialB)
+  
     QRPlane.addComponent(
       new Transform({
         position: new Vector3(0, 0.5, 0),
