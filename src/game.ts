@@ -64,9 +64,9 @@ const PBcube = new Entity('PBcube')
 engine.addEntity(PBcube)
 PBcube.setParent(_scene)
 const transform_PBcube = new Transform({
-  position: new Vector3(8, 14, 30),
+  position: new Vector3(2, 9.8, 18.5),
   rotation: new Quaternion(0, 0, 0, 0),
-  scale: new Vector3(1,1,1)
+  scale: new Vector3(.6,.6,.6)
 })
 PBcube.addComponentOrReplace(transform_PBcube)
 const gltfShape_PBcube = new GLTFShape("GLB/Bee Cube Spin.glb")
