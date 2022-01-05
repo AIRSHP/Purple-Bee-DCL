@@ -144,8 +144,6 @@ const gltfShape_blackhole5 = new GLTFShape("GLB/BlackholeLayers/BH05.glb")
 gltfShape_blackhole5.visible = true
 blackhole5.addComponentOrReplace(gltfShape_blackhole5)
 
-
-
 /* Red Light */
 const redlight = new Entity('redlight')
 engine.addEntity(redlight)
