@@ -13,7 +13,8 @@ export type Props = {
   controlDist?:number
 }
 
-let defaultStation = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+//let defaultStation = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8' //just some random shit
+let defaultStation = 'https://d3kt99p6ty4t3h.cloudfront.net/20210623_jagtronica_xAy1c/tVyNQJ.m3u8' //jag 2021-06-23 hosted by dadabase
 
 export default class Button implements IScript<Props> {
   channel = ''
@@ -144,7 +145,6 @@ export default class Button implements IScript<Props> {
           () => {
             log('clicked')
             channel.sendActions(props.onClick)
-            triggerEmote({ predefined: PredefinedEmote.HEAD_EXPLODDE })
           },
           {
             button: ActionButton.POINTER,
@@ -164,7 +164,7 @@ export default class Button implements IScript<Props> {
     // handle actions
     channel.handleAction('activate', ({ sender }) => {
       this.toggle(screen, true)
-
+      
       if (sender === channel.id) {
         channel.sendActions(props.onActivate)
       }
@@ -182,6 +182,7 @@ export default class Button implements IScript<Props> {
       if (sender === channel.id) {
         if (value) {
           channel.sendActions(props.onActivate)
+          triggerEmote({ predefined: PredefinedEmote.TIK })
         } else {
           channel.sendActions(props.onDeactivate)
         }
