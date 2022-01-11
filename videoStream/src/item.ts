@@ -182,7 +182,7 @@ export default class Button implements IScript<Props> {
       if (sender === channel.id) {
         if (value) {
           channel.sendActions(props.onActivate)
-          triggerEmote({ predefined: PredefinedEmote.TIK })
+          triggerEmote({ predefined: PredefinedEmote.HANDS_AIR })
         } else {
           channel.sendActions(props.onDeactivate)
         }

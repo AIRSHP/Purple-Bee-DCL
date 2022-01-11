@@ -1,9 +1,13 @@
+import * as utils from '@dcl/ecs-scene-utils'
 import { createChannel } from '../node_modules/decentraland-builder-scripts/channel'
 import { createInventory } from '../node_modules/decentraland-builder-scripts/inventory'
 import ImagePanel from "../imagePanel/src/item"
 import { sceneMessageBus } from './messageBus'
 import VideoScreenScript from "../videoStream/src/item"
-
+import { triggerEmote, PredefinedEmote } from "@decentraland/RestrictedActions"
+declare var setInterval: any
+declare var clearInterval: any
+declare var setTimeout: any
 
 const channelId = Math.random().toString(16).slice(2)
 const channelBus = new MessageBus()
@@ -34,7 +38,7 @@ _scene.addComponentOrReplace(transform)
           scale: new Vector3(1,1,1)
         })
         mainStructure .addComponentOrReplace(transform_mainStructure )
-        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena7.glb")
+        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena7dboz.glb")
         gltfShape_mainStructure .withCollisions = true
         gltfShape_mainStructure .isPointerBlocker = true
         gltfShape_mainStructure .visible = true
@@ -43,41 +47,38 @@ _scene.addComponentOrReplace(transform)
 
 /* Flying Blimp */
     
-const blimp = new Entity('blimp')
-engine.addEntity(blimp)
-blimp.setParent(_scene)
-const transform_blimp = new Transform({
-  position: new Vector3(8, 16, 16),
-  //rotation: new Quaternion(0, .5, 0, 0),
-  scale: new Vector3(1,1,1)
-})
-blimp.addComponentOrReplace(transform_blimp)
-const gltfShape_blimp = new GLTFShape("GLB/Blimp.glb")
-gltfShape_blimp.withCollisions = true
-gltfShape_blimp.isPointerBlocker = true
-gltfShape_blimp.visible = true
-blimp.addComponentOrReplace(gltfShape_blimp)
+        const blimp = new Entity('blimp')
+        engine.addEntity(blimp)
+        blimp.setParent(_scene)
+        const transform_blimp = new Transform({
+          position: new Vector3(8, 16, 16),
+          //rotation: new Quaternion(0, .5, 0, 0),
+          scale: new Vector3(1,1,1)
+        })
+        blimp.addComponentOrReplace(transform_blimp)
+        const gltfShape_blimp = new GLTFShape("GLB/Blimp.glb")
+        gltfShape_blimp.withCollisions = true
+        gltfShape_blimp.isPointerBlocker = true
+        gltfShape_blimp.visible = true
+        blimp.addComponentOrReplace(gltfShape_blimp)
 
 /* Cube Rotate PBcube */
-
-const PBcube = new Entity('PBcube')
-engine.addEntity(PBcube)
-PBcube.setParent(_scene)
-const transform_PBcube = new Transform({
-  position: new Vector3(2, 9.8, 18.5),
-  rotation: new Quaternion(0, 0, 0, 0),
-  scale: new Vector3(.6,.6,.6)
-})
-PBcube.addComponentOrReplace(transform_PBcube)
-const gltfShape_PBcube = new GLTFShape("GLB/Bee Cube Spin.glb")
-gltfShape_PBcube.withCollisions = true
-gltfShape_PBcube.isPointerBlocker = true
-gltfShape_PBcube.visible = true
-PBcube.addComponentOrReplace(gltfShape_PBcube)
-
-
-
-
+        /*
+        const PBcube = new Entity('PBcube')
+        engine.addEntity(PBcube)
+        PBcube.setParent(_scene)
+        const transform_PBcube = new Transform({
+          position: new Vector3(1, 19, 1),
+          rotation: new Quaternion(0, 0, 0, 0),
+          scale: new Vector3(.6,.6,.6)
+        })
+        PBcube.addComponentOrReplace(transform_PBcube)
+        const gltfShape_PBcube = new GLTFShape("GLB/Bee Cube Spin.glb")
+        gltfShape_PBcube.withCollisions = true
+        gltfShape_PBcube.isPointerBlocker = true
+        gltfShape_PBcube.visible = true
+        PBcube.addComponentOrReplace(gltfShape_PBcube)
+        */
 
 /* video screen */
 /****************/
@@ -86,7 +87,7 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
         engine.addEntity(videoStream)
         videoStream.setParent(_scene)
         const transform_videoStream = new Transform({
-          position: new Vector3(8, 2.92, 0.4),
+          position: new Vector3(8 ,3.75,0.5),
           rotation: new Quaternion(0, 0, 0, 1),
           scale: new Vector3(4.5, 4.5, 4.5)
         })
@@ -124,7 +125,7 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
           gltfShape_blackhole1.isPointerBlocker = true
           gltfShape_blackhole1.visible = true
           blackhole1.addComponentOrReplace(gltfShape_blackhole1)
-
+                 
           //Blackhole Dancefloor 2
           const blackhole2 = new Entity('blackhole2')
           engine.addEntity(blackhole2)
@@ -201,7 +202,29 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
           gltfShape_redlight2.visible = true
           redlight2.addComponentOrReplace(gltfShape_redlight2)
 
-
+          //trigger for dancefloor actions
+          let danceTimer = false
+          function dance(){
+            let dances = [PredefinedEmote.ROBOT,PredefinedEmote.TIK,PredefinedEmote.HAMMER,PredefinedEmote.TEKTONIK,PredefinedEmote.DISCO]
+            let randomDance = Math.floor(Math.random() * dances.length);
+            triggerEmote({ predefined: dances[randomDance] })
+            //log("dancing with "+dances[randomDance])
+          }
+          const blackholeTrigger = new utils.TriggerComponent(
+            new utils.TriggerBoxShape(new Vector3(7.4, 5, 7.4), Vector3.Zero()),
+            {
+              onCameraEnter: () => {
+                //log("on the blackhole")
+                let danceFirst = setTimeout(()=>{dance()},1000)
+                danceTimer = setInterval(()=>{dance()},10000)
+              },
+              onCameraExit: () => {
+                //log("off the blackhole")
+                clearInterval(danceTimer)
+              }
+            }
+          )
+          blackhole1.addComponentOrReplace(blackholeTrigger)
 
 /***** DONK TOSS  
 ****/
@@ -226,7 +249,7 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
 
           const box = new Entity()
           box.addComponent(boxMaterial)
-          box.addComponent(new GLTFShape("GLB/DonkModel4.glb"))
+          box.addComponent(new GLTFShape("GLB/DonkModel5.glb"))
           box.addComponent(new Transform({
             position: new Vector3(8, 2.5, 3)
           }))
@@ -456,14 +479,15 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
 
 
 /**** IMAGE PANELS */
+          const bannerSize = 3.4
           const imageCacheBust = Math.floor(Math.random() * 10000)
           const imagePanel1 = new Entity('imageFromURL')
           engine.addEntity(imagePanel1)
           imagePanel1.setParent(_scene)
           const imagePanel1_transform = new Transform({
-            position: new Vector3(2.65, 3.01, 31.5),
+            position: new Vector3(3, 3.01, 31.5),
             rotation: new Quaternion(0, .5, 0, 0),
-            scale: new Vector3(2.7,2.7,2.7)
+            scale: new Vector3(bannerSize ,bannerSize ,bannerSize )
           })
           imagePanel1.addComponentOrReplace(imagePanel1_transform)
           const imagePanelScript1 = new ImagePanel()
@@ -513,25 +537,11 @@ PBcube.addComponentOrReplace(gltfShape_PBcube)
           const imagePanelScript4 = new ImagePanel()
           imagePanelScript4.init()
           imagePanelScript4.spawn(imagePanel4, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-2.jpg?"+imageCacheBust,
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-4.jpg?"+imageCacheBust,
               "url":"https://purplebee.org/?dclpanel=4",
               "basic":true
           }, createChannel(channelId, imagePanel4, channelBus))
 
-          const imagePanel5 = new Entity('imageFromURL')
-          engine.addEntity(imagePanel5)
-          imagePanel5.setParent(imagePanel1)
-          const imagePanel5_transform = new Transform({
-            position: new Vector3(-4, 0, 0),
-          })
-          imagePanel5.addComponentOrReplace(imagePanel5_transform)
-          const imagePanelScript5 = new ImagePanel()
-          imagePanelScript5.init()
-          imagePanelScript5.spawn(imagePanel5, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-1.jpg?"+imageCacheBust,
-              "url":"https://purplebee.org/?dclpanel=5",
-              "basic":true
-          }, createChannel(channelId, imagePanel5, channelBus))
 
 /***** END IMAGE PANELS */
 
