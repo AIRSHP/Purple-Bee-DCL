@@ -101,8 +101,9 @@ _scene.addComponentOrReplace(transform)
             "volume":1,
             "controlDist":20,
             "onClick":[{"entityName":"videoStream","actionId":"toggle","values":{}}],
-            "image":"https://purplebee.org/wp-content/uploads/purple-bee-live-slate.jpg",
-            "station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
+            "image":"https://purplebee.org/wp-content/uploads/DCL-Screen-Main.jpg",
+            //"station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
+            "station":"https://dimhp4sranvy3.cloudfront.net/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
           }, 
           createChannel(channelId, videoStream, channelBus)
         )

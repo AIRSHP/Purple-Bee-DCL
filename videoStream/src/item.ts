@@ -114,8 +114,8 @@ export default class Button implements IScript<Props> {
     this.volume[screen.name] = props.volume
 
 
-    let placeholderMaterial = new Material()
-    placeholderMaterial.albedoTexture = new Texture(
+    let placeholderMaterial = new BasicMaterial()
+    placeholderMaterial.texture = new Texture(
       props.image ? props.image : 'videoStream/images/stream.png'
     )
     //console.log(props.image)
@@ -182,7 +182,7 @@ export default class Button implements IScript<Props> {
       if (sender === channel.id) {
         if (value) {
           channel.sendActions(props.onActivate)
-          triggerEmote({ predefined: PredefinedEmote.HANDS_AIR })
+          triggerEmote({ predefined: PredefinedEmote.HANDS_AIR})
         } else {
           channel.sendActions(props.onDeactivate)
         }
