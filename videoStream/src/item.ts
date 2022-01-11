@@ -119,8 +119,8 @@ export default class Button implements IScript<Props> {
       props.image ? props.image : 'videoStream/images/stream.png'
     )
     //console.log(props.image)
-    placeholderMaterial.specularIntensity = 0
-    placeholderMaterial.roughness = 1
+    //placeholderMaterial.specularIntensity = 0
+    //placeholderMaterial.roughness = 1
     this.sign[screen.name].addComponent(placeholderMaterial)
 
     //orig image code here
