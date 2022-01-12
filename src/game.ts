@@ -108,6 +108,23 @@ _scene.addComponentOrReplace(transform)
           createChannel(channelId, videoStream, channelBus)
         )
 
+        ////black wall under screen
+        const blackwall = new Entity('blackwall')
+        engine.addEntity(blackwall)
+        blackwall.setParent(_scene)
+        const transform_blackwall = new Transform({
+          position: new Vector3(8, 2.2, .5),
+          rotation: new Quaternion(0, .5, 0, .5),
+          scale: new Vector3(1.3,1.65,1.8)
+        })
+        blackwall.addComponentOrReplace(transform_blackwall)
+        const gltfShape_blackwall = new GLTFShape("GLB/blackwall.glb")
+        gltfShape_blackwall.withCollisions = false
+        gltfShape_blackwall.isPointerBlocker = true
+        gltfShape_blackwall.visible = true
+        blackwall.addComponentOrReplace(gltfShape_blackwall)
+
+        
 
 /* Blackhole Dancefloor  */
 
