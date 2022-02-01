@@ -4,7 +4,7 @@ import { createInventory } from '../node_modules/decentraland-builder-scripts/in
 import ImagePanel from "../imagePanel/src/item"
 import { sceneMessageBus } from './messageBus'
 import VideoScreenScript from "../videoStream/src/item"
-import { triggerEmote, PredefinedEmote } from "@decentraland/RestrictedActions"
+import { triggerEmote, PredefinedEmote, movePlayerTo } from "@decentraland/RestrictedActions"
 declare var setInterval: any
 declare var clearInterval: any
 declare var setTimeout: any
@@ -43,6 +43,97 @@ _scene.addComponentOrReplace(transform)
         gltfShape_mainStructure .isPointerBlocker = true
         gltfShape_mainStructure .visible = true
         mainStructure .addComponentOrReplace(gltfShape_mainStructure)
+
+/* Circular Moving Platform on Dancefloor */
+        const cplat = new Entity('cplat')
+        
+        cplat.setParent(_scene)
+        const transform_cplat = new Transform({
+          position: new Vector3(8, 1, 7.4)
+        })
+        cplat.addComponentOrReplace(transform_cplat)
+        const gltfShape_cplat = new GLTFShape("GLB/circular-platform4.glb")
+        gltfShape_cplat.withCollisions = true
+        gltfShape_cplat.isPointerBlocker = true
+        gltfShape_cplat.visible = true
+        cplat.addComponentOrReplace(gltfShape_cplat)
+
+        //trigger for circle platform
+        const cplatChild = new Entity('cplatChild')
+       
+        cplatChild.setParent(cplat)
+        const transform_cplatChild = new Transform({
+          position: new Vector3(-2.73, 0, -3.69),
+        })
+        cplatChild.addComponentOrReplace(transform_cplatChild)
+        const circpTrigger = new utils.TriggerComponent(
+          new utils.TriggerBoxShape(new Vector3(1.2, 5, 1.2), Vector3.Zero()),
+          {
+            onCameraEnter: () => {
+              setTimeout(()=>{
+                cplat.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 24, 0)) )
+              },100)
+            },
+            onCameraExit: () => {
+              cplat.getComponent(utils.KeepRotatingComponent).stop()
+             }
+            //,enableDebug: true
+          }
+        )
+        cplatChild.addComponentOrReplace(circpTrigger)    
+        //cplat.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 24, 0)))
+        engine.addEntity(cplat)
+        engine.addEntity(cplatChild)
+
+
+
+
+/*
+        const cplat = new Entity('cplat')
+        engine.addEntity(cplat)
+        cplat.setParent(_scene)
+        const transform_cplat = new Transform({
+          position: new Vector3(8, 1, 7.4),
+          //rotation: new Quaternion(0, .5, 0, 0),
+          scale: new Vector3(1,1,1)
+        })
+        cplat.addComponentOrReplace(transform_cplat)
+        const gltfShape_cplat = new GLTFShape("GLB/circular-platform3.glb")
+        gltfShape_cplat.withCollisions = true
+        gltfShape_cplat.isPointerBlocker = true
+        gltfShape_cplat.visible = true
+        cplat.addComponentOrReplace(gltfShape_cplat)
+
+
+        //trigger for circle platform
+        const cplatChild = new Entity('cplatChild')
+        engine.addEntity(cplatChild)
+        cplatChild.setParent(cplat)
+        const transform_cplatChild = new Transform({
+          position: new Vector3(0, 0, 0),
+          //rotation: new Quaternion(0, .5, 0, 0),
+          //scale: new Vector3(1,1,1)
+        })
+        cplatChild.addComponentOrReplace(transform_cplatChild)
+        const circpTrigger = new utils.TriggerComponent(
+          new utils.TriggerBoxShape(new Vector3(1, 2, 1), Vector3.Zero()),
+          {
+            onCameraEnter: () => {
+              log("on the circpTrigger")
+            },
+            onCameraExit: () => {
+
+            },
+            enableDebug: true
+          }
+        )
+        cplatChild.addComponentOrReplace(circpTrigger)
+      */
+
+
+
+
+
 
 
 /* Flying Blimp */
@@ -96,7 +187,7 @@ _scene.addComponentOrReplace(transform)
         const videoScreenScript = new VideoScreenScript()
         videoScreenScript.init()
         videoScreenScript.spawn(videoStream, {
-            "startOn":false,
+            "startOn":true,
             "onClickText":"Play/Pause",
             "volume":1,
             "controlDist":20,
@@ -107,6 +198,8 @@ _scene.addComponentOrReplace(transform)
           }, 
           createChannel(channelId, videoStream, channelBus)
         )
+        //log(videoScreenScript);
+
 
         ////black wall under screen
         const blackwall = new Entity('blackwall')
@@ -220,7 +313,7 @@ _scene.addComponentOrReplace(transform)
           gltfShape_redlight2.visible = true
           redlight2.addComponentOrReplace(gltfShape_redlight2)
 
-          //trigger for dancefloor actions
+//trigger for dancefloor actions
           let danceTimer = false
           function dance(){
             let dances = [PredefinedEmote.ROBOT,PredefinedEmote.TIK,PredefinedEmote.HAMMER,PredefinedEmote.TEKTONIK,PredefinedEmote.DISCO]
@@ -244,6 +337,10 @@ _scene.addComponentOrReplace(transform)
           )
           blackhole1.addComponentOrReplace(blackholeTrigger)
 
+
+
+  
+
 /***** DONK TOSS  
 ****/
 
@@ -264,12 +361,12 @@ _scene.addComponentOrReplace(transform)
           // Box (Donk)
           const boxMaterial = new Material()
           boxMaterial.albedoColor = Color3.Red()
-
+          const donkPosition = new Vector3(8, 2.5, 15)
           const box = new Entity()
           box.addComponent(boxMaterial)
           box.addComponent(new GLTFShape("GLB/DonkModel5.glb"))
           box.addComponent(new Transform({
-            position: new Vector3(8, 2.5, 3)
+            position: donkPosition
           }))
           
           box.addComponentOrReplace(
@@ -306,7 +403,7 @@ _scene.addComponentOrReplace(transform)
           const boxShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
           const boxBody = new CANNON.Body({ mass: 5 })
           boxBody.addShape(boxShape)
-          boxBody.position.set(8, 2.5, 3)
+          boxBody.position.set(8, 2.5, 15)
           boxBody.linearDamping = 0.4 // Round will keep translating even with friction so you need linearDamping
           boxBody.angularDamping = 0.4 // Round bodies will keep rotating even with friction so you need angularDamping
           world.addBody(boxBody) // Add body to the world
