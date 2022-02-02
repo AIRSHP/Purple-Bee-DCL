@@ -1,10 +1,12 @@
 import * as utils from '@dcl/ecs-scene-utils'
+import * as ui from '@dcl/ui-scene-utils'
 import { createChannel } from '../node_modules/decentraland-builder-scripts/channel'
 import { createInventory } from '../node_modules/decentraland-builder-scripts/inventory'
-import ImagePanel from "../imagePanel/src/item"
 import { sceneMessageBus } from './messageBus'
-import VideoScreenScript from "../videoStream/src/item"
 import { triggerEmote, PredefinedEmote, movePlayerTo } from "@decentraland/RestrictedActions"
+import ImagePanel from "../imagePanel/src/item"
+import VideoScreenScript from "../videoStream/src/item"
+
 declare var setInterval: any
 declare var clearInterval: any
 declare var setTimeout: any
@@ -24,6 +26,11 @@ const transform = new Transform({
 })
 _scene.addComponentOrReplace(transform)
 
+
+/* UI Stuff */
+
+//let pbIcon = new ui.MediumIcon('images/icons8-live-streaming-64.png',100,100)
+//ui.displayAnnouncement('Welcome to Purple Bee', 10, true, Color4.White(), 50, true)
 
 
 /* Main Structure */
@@ -49,7 +56,7 @@ _scene.addComponentOrReplace(transform)
         
         cplat.setParent(_scene)
         const transform_cplat = new Transform({
-          position: new Vector3(8, 1, 7.4)
+          position: new Vector3(8, 1.16, 7.4)
         })
         cplat.addComponentOrReplace(transform_cplat)
         const gltfShape_cplat = new GLTFShape("GLB/circular-platform4.glb")
@@ -71,7 +78,7 @@ _scene.addComponentOrReplace(transform)
           {
             onCameraEnter: () => {
               setTimeout(()=>{
-                cplat.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 24, 0)) )
+                cplat.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 20, 0)) )
               },100)
             },
             onCameraExit: () => {
@@ -81,7 +88,6 @@ _scene.addComponentOrReplace(transform)
           }
         )
         cplatChild.addComponentOrReplace(circpTrigger)    
-        //cplat.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 24, 0)))
         engine.addEntity(cplat)
         engine.addEntity(cplatChild)
 
@@ -336,6 +342,25 @@ _scene.addComponentOrReplace(transform)
             }
           )
           blackhole1.addComponentOrReplace(blackholeTrigger)
+
+
+
+          const balcony1Trigger = new utils.TriggerComponent(
+            new utils.TriggerBoxShape(new Vector3(14, 8, 6), new Vector3(0, 9, -1.5)),
+            {
+              onCameraEnter: () => {
+                log("on the balcony1Trigger")
+                let danceFirst = setTimeout(()=>{dance()},1000)
+                danceTimer = setInterval(()=>{dance()},10000)
+              },
+              onCameraExit: () => {
+                log("off the balcony1Trigger")
+                clearInterval(danceTimer)
+              }
+              //,enableDebug: true
+            }
+          )
+          mainStructure.addComponentOrReplace(balcony1Trigger)
 
 
 
