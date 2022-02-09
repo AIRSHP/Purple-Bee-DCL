@@ -11,18 +11,17 @@
     "ecs:install-next": "npm install --save-dev decentraland-ecs@next"
   },
   "devDependencies": {
-    "decentraland-ecs": "latest"
+    "decentraland-ecs": "^6.8.1"
   },
   "dependencies": {
-    "decentraland-ecs": "latest",
-    "decentraland-builder-scripts": "latest",
     "@dcl/ecs-scene-utils": "^1.6.1",
     "@dcl/ui-scene-utils": "^1.7.1",
-    "cors": "^2.8.5",
-    "eth-connect": "^4.0.2",
-    "express": "^4.17.1",
     "@types/cannon": "^0.1.4",
-    "cannon": "github:schteppe/cannon.js"
+    "cannon": "github:schteppe/cannon.js",
+    "cors": "^2.8.5",
+    "decentraland-builder-scripts": "latest",
+    "eth-connect": "^4.0.2",
+    "express": "^4.17.1"
   },
   "bundleDependencies": [
     "@dcl/ecs-scene-utils",
