@@ -1,7 +1,7 @@
 {
-  "name": "dcl-project",
+  "name": "purplebee-dcl-venue",
   "version": "1.0.0",
-  "description": "My new Decentraland project",
+  "description": "Purple Bee DCL Venue 1.0",
   "scripts": {
     "start": "dcl start",
     "build": "build-ecs",

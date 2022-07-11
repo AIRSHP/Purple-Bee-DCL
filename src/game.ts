@@ -15,6 +15,7 @@ const channelId = Math.random().toString(16).slice(2)
 const channelBus = new MessageBus()
 const inventory = createInventory(UICanvas, UIContainerStack, UIImage)
 const options = { inventory }
+const imageCacheBust = Math.floor(Math.random() * 10000)
 
 
 const _scene = new Entity('_scene')
@@ -26,6 +27,23 @@ const transform = new Transform({
 })
 _scene.addComponentOrReplace(transform)
 
+/* connect to PB wordpress site api to get custom options data */
+/*
+const pbOptionsUrl = 'https://purplebee.org/wp-json/pb/dcl-options'
+executeTask(async () => {
+  try {
+    let response = await fetch(pbOptionsUrl{
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    })
+    let json = await response.json()
+    log('pb wordpress options')
+    log(json)
+  } catch {
+    log("failed to reach URL")
+  }
+})
+*/
 
 /* UI Stuff */
 
@@ -52,6 +70,7 @@ _scene.addComponentOrReplace(transform)
         mainStructure .addComponentOrReplace(gltfShape_mainStructure)
 
 /* Circular Moving Platform on Dancefloor */
+        /*
         const cplat = new Entity('cplat')
         
         cplat.setParent(_scene)
@@ -59,8 +78,8 @@ _scene.addComponentOrReplace(transform)
           position: new Vector3(8, 1.16, 7.4)
         })
         cplat.addComponentOrReplace(transform_cplat)
-        const gltfShape_cplat = new GLTFShape("GLB/circular-platform4.glb")
-        gltfShape_cplat.withCollisions = true
+        const gltfShape_cplat = new GLTFShape("GLB/circular-platform5.glb")
+        gltfShape_cplat.withCollisions = false
         gltfShape_cplat.isPointerBlocker = true
         gltfShape_cplat.visible = true
         cplat.addComponentOrReplace(gltfShape_cplat)
@@ -90,8 +109,7 @@ _scene.addComponentOrReplace(transform)
         cplatChild.addComponentOrReplace(circpTrigger)    
         engine.addEntity(cplat)
         engine.addEntity(cplatChild)
-
-
+*/
 
 
 /*
@@ -184,7 +202,7 @@ _scene.addComponentOrReplace(transform)
         engine.addEntity(videoStream)
         videoStream.setParent(_scene)
         const transform_videoStream = new Transform({
-          position: new Vector3(8 ,3.75,0.5),
+          position: new Vector3(8 ,4.15,0.5),
           rotation: new Quaternion(0, 0, 0, 1),
           scale: new Vector3(4.5, 4.5, 4.5)
         })
@@ -194,10 +212,10 @@ _scene.addComponentOrReplace(transform)
         videoScreenScript.init()
         videoScreenScript.spawn(videoStream, {
             "startOn":true,
-            "onClickText":"Play/Pause",
             "volume":1,
             "controlDist":20,
-            "onClick":[{"entityName":"videoStream","actionId":"toggle","values":{}}],
+            //"onClick":[{"entityName":"videoStream","actionId":"toggle","values":{}}],
+            "onClickText":"Play/Pause",
             "image":"https://purplebee.org/wp-content/uploads/DCL-Screen-Main.jpg",
             //"station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
             "station":"https://dimhp4sranvy3.cloudfront.net/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
@@ -214,16 +232,83 @@ _scene.addComponentOrReplace(transform)
         const transform_blackwall = new Transform({
           position: new Vector3(8, 2.2, .5),
           rotation: new Quaternion(0, .5, 0, .5),
-          scale: new Vector3(1.3,1.65,1.8)
+          scale: new Vector3(1.3,2,1.8)
         })
         blackwall.addComponentOrReplace(transform_blackwall)
-        const gltfShape_blackwall = new GLTFShape("GLB/blackwall.glb")
+        const gltfShape_blackwall = new GLTFShape("GLB/screenwall.glb")
         gltfShape_blackwall.withCollisions = false
         gltfShape_blackwall.isPointerBlocker = true
         gltfShape_blackwall.visible = true
         blackwall.addComponentOrReplace(gltfShape_blackwall)
 
-        
+         //image banners under the screen
+         const screenbannersize = 3.25
+         const imagePanel5 = new Entity('imageFromURL')
+         engine.addEntity(imagePanel5)
+         imagePanel5.setParent(_scene)
+         const imagePanel5_transform = new Transform({
+           position: new Vector3(12.85, 1, .75),
+           rotation: new Quaternion(0, 0, 0, 0),
+           scale: new Vector3(screenbannersize, screenbannersize, 1 )
+         })
+         imagePanel5.addComponentOrReplace(imagePanel5_transform)
+         const imagePanelScript5 = new ImagePanel()
+         imagePanelScript5.init()
+         imagePanelScript5.spawn(imagePanel5, {
+             "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-5.png?"+imageCacheBust,
+             "url":"https://purplebee.org/?dclpanel=5",
+             "basic":true
+         }, createChannel(channelId, imagePanel5, channelBus))
+
+         const imagePanel6 = new Entity('imageFromURL')
+          engine.addEntity(imagePanel6)
+          imagePanel6.setParent(imagePanel5)
+          const imagePanel6_transform = new Transform({
+            position: new Vector3(-1, 0, 0),
+          })
+          imagePanel6.addComponentOrReplace(imagePanel6_transform)
+          const imagePanelScript6 = new ImagePanel()
+          imagePanelScript6.init()
+          imagePanelScript6.spawn(imagePanel6, {
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-6.png?"+imageCacheBust,
+              "url":"https://purplebee.org/?dclpanel=6",
+              "basic":true
+          }, createChannel(channelId, imagePanel6, channelBus))
+
+          const imagePanel7 = new Entity('imageFromURL')
+          engine.addEntity(imagePanel7)
+          imagePanel7.setParent(imagePanel5)
+          const imagePanel7_transform = new Transform({
+            position: new Vector3(-2, 0, 0),
+          })
+          imagePanel7.addComponentOrReplace(imagePanel7_transform)
+          const imagePanelScript7 = new ImagePanel()
+          imagePanelScript7.init()
+          imagePanelScript7.spawn(imagePanel7, {
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-7.png?"+imageCacheBust,
+              "url":"https://purplebee.org/?dclpanel=7",
+              "basic":true
+          }, createChannel(channelId, imagePanel7, channelBus))
+          
+          const imagePanel8 = new Entity('imageFromURL')
+          engine.addEntity(imagePanel8)
+          imagePanel8.setParent(imagePanel5)
+          const imagePanel8_transform = new Transform({
+            position: new Vector3(-3, 0, 0),
+          })
+          imagePanel8.addComponentOrReplace(imagePanel8_transform)
+          const imagePanelScript8 = new ImagePanel()
+          imagePanelScript8.init()
+          imagePanelScript8.spawn(imagePanel8, {
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-8.png?"+imageCacheBust,
+              "url":"https://purplebee.org/?dclpanel=8",
+              "basic":true
+          }, createChannel(channelId, imagePanel8, channelBus))
+
+
+
+
+
 
 /* Blackhole Dancefloor  */
 
@@ -349,12 +434,12 @@ _scene.addComponentOrReplace(transform)
             new utils.TriggerBoxShape(new Vector3(14, 8, 6), new Vector3(0, 9, -1.5)),
             {
               onCameraEnter: () => {
-                log("on the balcony1Trigger")
+                //log("on the balcony1Trigger")
                 let danceFirst = setTimeout(()=>{dance()},1000)
                 danceTimer = setInterval(()=>{dance()},10000)
               },
               onCameraExit: () => {
-                log("off the balcony1Trigger")
+                //log("off the balcony1Trigger")
                 clearInterval(danceTimer)
               }
               //,enableDebug: true
@@ -373,7 +458,6 @@ _scene.addComponentOrReplace(transform)
 
 /**** IMAGE PANELS */
           const bannerSize = 3.4
-          const imageCacheBust = Math.floor(Math.random() * 10000)
           const imagePanel1 = new Entity('imageFromURL')
           engine.addEntity(imagePanel1)
           imagePanel1.setParent(_scene)
@@ -386,7 +470,7 @@ _scene.addComponentOrReplace(transform)
           const imagePanelScript1 = new ImagePanel()
           imagePanelScript1.init()
           imagePanelScript1.spawn(imagePanel1, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-1.jpg?"+imageCacheBust,
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-1.png?"+imageCacheBust,
               "url":"https://purplebee.org/?dclpanel=1"
           }, createChannel(channelId, imagePanel1, channelBus))
 
@@ -400,7 +484,7 @@ _scene.addComponentOrReplace(transform)
           const imagePanelScript2 = new ImagePanel()
           imagePanelScript2.init()
           imagePanelScript2.spawn(imagePanel2, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-2.jpg?"+imageCacheBust,
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-2.png?"+imageCacheBust,
               "url":"https://purplebee.org/?dclpanel=2",
               "basic":true
           }, createChannel(channelId, imagePanel2, channelBus))
@@ -415,7 +499,7 @@ _scene.addComponentOrReplace(transform)
           const imagePanelScript3 = new ImagePanel()
           imagePanelScript3.init()
           imagePanelScript3.spawn(imagePanel3, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-3.jpg?"+imageCacheBust,
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-3.png?"+imageCacheBust,
               "url":"https://purplebee.org/?dclpanel=3",
               "basic":true
           }, createChannel(channelId, imagePanel3, channelBus))
@@ -430,11 +514,12 @@ _scene.addComponentOrReplace(transform)
           const imagePanelScript4 = new ImagePanel()
           imagePanelScript4.init()
           imagePanelScript4.spawn(imagePanel4, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-4.jpg?"+imageCacheBust,
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-4.png?"+imageCacheBust,
               "url":"https://purplebee.org/?dclpanel=4",
               "basic":true
           }, createChannel(channelId, imagePanel4, channelBus))
 
+         
 
 /***** END IMAGE PANELS */
 

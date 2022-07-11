@@ -140,6 +140,7 @@ export default class Button implements IScript<Props> {
         )
       )
 
+
       screen.addComponent(
         new OnPointerDown(
           () => {
@@ -153,6 +154,7 @@ export default class Button implements IScript<Props> {
           }
         )
       )
+
     }
 
     if (props.startOn) {

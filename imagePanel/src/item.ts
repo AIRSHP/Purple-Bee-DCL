@@ -20,6 +20,11 @@ export default class SignPost implements IScript<Props> {
 
     let QRTexture = new Texture(url)
     let QRMaterialB = new BasicMaterial()
+    //QRMaterialB.albedoColor = Color4(1, 0, 0, 0.5)
+    //QRMaterialB.metallic = 0.9
+    //QRMaterialB.roughness = 0.1
+    //QRMaterialB.visible = true
+
     QRMaterialB.texture = QRTexture
 
 
