@@ -63,7 +63,7 @@ executeTask(async () => {
           scale: new Vector3(1,1,1)
         })
         mainStructure .addComponentOrReplace(transform_mainStructure )
-        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena7dboz.glb")
+        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena8dboz.glb")
         gltfShape_mainStructure .withCollisions = true
         gltfShape_mainStructure .isPointerBlocker = true
         gltfShape_mainStructure .visible = true
@@ -241,9 +241,32 @@ executeTask(async () => {
         gltfShape_blackwall.visible = true
         blackwall.addComponentOrReplace(gltfShape_blackwall)
 
+
+        //marquee image banner above the screen
+        const imagePanelMarquee = new Entity()
+        engine.addEntity(imagePanelMarquee)
+        imagePanelMarquee.setParent(_scene)
+        const imagePanelMarquee_transform = new Transform({
+          position: new Vector3(8, 12.3, 1.95),
+          rotation: new Quaternion(0, 0, 0, 0),
+          scale: new Vector3(12.05, 1.56, 1 )
+        })
+        imagePanelMarquee.addComponentOrReplace(imagePanelMarquee_transform)
+        const imagePanelMarqueeScript = new ImagePanel()
+        imagePanelMarqueeScript.init()
+        imagePanelMarqueeScript.spawn(imagePanelMarquee, {
+            "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-marquee.png?"+imageCacheBust,
+            "url":"https://purplebee.org/?dclpanel=marquee",
+            "basic":true
+        }, createChannel(channelId, imagePanelMarquee, channelBus))
+
+
+
          //image banners under the screen
+         
+         
          const screenbannersize = 3.25
-         const imagePanel5 = new Entity('imageFromURL')
+         const imagePanel5 = new Entity()
          engine.addEntity(imagePanel5)
          imagePanel5.setParent(_scene)
          const imagePanel5_transform = new Transform({
@@ -260,50 +283,46 @@ executeTask(async () => {
              "basic":true
          }, createChannel(channelId, imagePanel5, channelBus))
 
-         const imagePanel6 = new Entity('imageFromURL')
-          engine.addEntity(imagePanel6)
-          imagePanel6.setParent(imagePanel5)
-          const imagePanel6_transform = new Transform({
-            position: new Vector3(-1, 0, 0),
-          })
-          imagePanel6.addComponentOrReplace(imagePanel6_transform)
-          const imagePanelScript6 = new ImagePanel()
-          imagePanelScript6.init()
-          imagePanelScript6.spawn(imagePanel6, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-6.png?"+imageCacheBust,
-              "url":"https://purplebee.org/?dclpanel=6",
-              "basic":true
-          }, createChannel(channelId, imagePanel6, channelBus))
+        const imagePanel6 = new Entity()
+        engine.addEntity(imagePanel6)
+        imagePanel6.setParent(imagePanel5)
+        imagePanel6.addComponent(new Transform())
+        imagePanel6.getComponent(Transform).position.set(-1, 0, 0)
+        const imagePanelScript6 = new ImagePanel()
+        imagePanelScript6.init()
+        imagePanelScript6.spawn(imagePanel6, {
+            "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-6.png?"+imageCacheBust,
+            "url":"https://purplebee.org/?dclpanel=6",
+            "basic":true
+        }, createChannel(channelId, imagePanel5, channelBus))
 
-          const imagePanel7 = new Entity('imageFromURL')
-          engine.addEntity(imagePanel7)
-          imagePanel7.setParent(imagePanel5)
-          const imagePanel7_transform = new Transform({
-            position: new Vector3(-2, 0, 0),
-          })
-          imagePanel7.addComponentOrReplace(imagePanel7_transform)
-          const imagePanelScript7 = new ImagePanel()
-          imagePanelScript7.init()
-          imagePanelScript7.spawn(imagePanel7, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-7.png?"+imageCacheBust,
-              "url":"https://purplebee.org/?dclpanel=7",
-              "basic":true
-          }, createChannel(channelId, imagePanel7, channelBus))
-          
-          const imagePanel8 = new Entity('imageFromURL')
-          engine.addEntity(imagePanel8)
-          imagePanel8.setParent(imagePanel5)
-          const imagePanel8_transform = new Transform({
-            position: new Vector3(-3, 0, 0),
-          })
-          imagePanel8.addComponentOrReplace(imagePanel8_transform)
-          const imagePanelScript8 = new ImagePanel()
-          imagePanelScript8.init()
-          imagePanelScript8.spawn(imagePanel8, {
-              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-8.png?"+imageCacheBust,
-              "url":"https://purplebee.org/?dclpanel=8",
-              "basic":true
-          }, createChannel(channelId, imagePanel8, channelBus))
+        const imagePanel7 = new Entity()
+        engine.addEntity(imagePanel7)
+        imagePanel7.setParent(imagePanel5)
+        imagePanel7.addComponent(new Transform())
+        imagePanel7.getComponent(Transform).position.set(-2, 0, 0)
+        const imagePanelScript7 = new ImagePanel()
+        imagePanelScript7.init()
+        imagePanelScript7.spawn(imagePanel7, {
+            "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-7.png?"+imageCacheBust,
+            "url":"https://purplebee.org/?dclpanel=7",
+            "basic":true
+        }, createChannel(channelId, imagePanel7, channelBus))
+        
+        const imagePanel8 = new Entity()
+        engine.addEntity(imagePanel8)
+        imagePanel8.setParent(imagePanel5)
+        const imagePanel8_transform = new Transform({
+          position: new Vector3(-3, 0, 0),
+        })
+        imagePanel8.addComponentOrReplace(imagePanel8_transform)
+        const imagePanelScript8 = new ImagePanel()
+        imagePanelScript8.init()
+        imagePanelScript8.spawn(imagePanel8, {
+            "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-8.png?"+imageCacheBust,
+            "url":"https://purplebee.org/?dclpanel=8",
+            "basic":true
+        }, createChannel(channelId, imagePanel8, channelBus))
 
 
 
@@ -378,6 +397,7 @@ executeTask(async () => {
           blackhole5.addComponentOrReplace(gltfShape_blackhole5)
 
 /* Red Light */
+         /*
           const redlight = new Entity('redlight')
           engine.addEntity(redlight)
           redlight.setParent(_scene)
@@ -403,6 +423,11 @@ executeTask(async () => {
           const gltfShape_redlight2 = new GLTFShape("GLB/RedLight.glb")
           gltfShape_redlight2.visible = true
           redlight2.addComponentOrReplace(gltfShape_redlight2)
+          
+          
+          
+          */
+
 
 //trigger for dancefloor actions
           let danceTimer = false
@@ -446,12 +471,6 @@ executeTask(async () => {
             }
           )
           mainStructure.addComponentOrReplace(balcony1Trigger)
-
-
-
-  
-
-
 
 
 
@@ -524,7 +543,21 @@ executeTask(async () => {
 /***** END IMAGE PANELS */
 
 
-
+////back wall in tunnel - collider
+const tunnelbackwall = new Entity('tunnelbackwall')
+engine.addEntity(tunnelbackwall)
+tunnelbackwall.setParent(_scene)
+const transform_tunnelbackwall = new Transform({
+  position: new Vector3(8, .95, 31),
+  rotation: new Quaternion(0, .5, 0, .5),
+  scale: new Vector3(1.3,2,1.8)
+})
+tunnelbackwall.addComponent(transform_tunnelbackwall)
+const gltfShape_tunnelbackwall = gltfShape_blackwall
+gltfShape_tunnelbackwall.withCollisions = false
+gltfShape_tunnelbackwall.isPointerBlocker = true
+gltfShape_tunnelbackwall.visible = true
+tunnelbackwall.addComponentOrReplace(gltfShape_tunnelbackwall)
 
 
 //end
