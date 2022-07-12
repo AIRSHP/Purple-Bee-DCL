@@ -28,22 +28,22 @@ const transform = new Transform({
 _scene.addComponentOrReplace(transform)
 
 /* connect to PB wordpress site api to get custom options data */
-/*
+
 const pbOptionsUrl = 'https://purplebee.org/wp-json/pb/dcl-options'
 executeTask(async () => {
   try {
-    let response = await fetch(pbOptionsUrl{
+    let response = await fetch(pbOptionsUrl,{
       headers: { "Content-Type": "application/json" },
-      method: "POST",
+      method: "POST"
     })
     let json = await response.json()
     log('pb wordpress options')
-    log(json)
+    log( await json)
   } catch {
-    log("failed to reach URL")
+    log("pb wordpress error - failed to reach URL")
   }
 })
-*/
+
 
 /* UI Stuff */
 
@@ -218,7 +218,7 @@ executeTask(async () => {
             "onClickText":"Play/Pause",
             "image":"https://purplebee.org/wp-content/uploads/DCL-Screen-Main.jpg",
             //"station":"https://8343f7014c0ea438.mediapackage.us-west-2.amazonaws.com/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
-            "station":"https://dimhp4sranvy3.cloudfront.net/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8"
+            "station":"https://dimhp4sranvy3.cloudfront.net/out/v1/97ed27876e70411685f551766ae1cec4/index.m3u8?"+imageCacheBust
           }, 
           createChannel(channelId, videoStream, channelBus)
         )
