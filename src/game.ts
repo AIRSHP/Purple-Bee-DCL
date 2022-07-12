@@ -63,7 +63,7 @@ executeTask(async () => {
           scale: new Vector3(1,1,1)
         })
         mainStructure .addComponentOrReplace(transform_mainStructure )
-        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena8dboz.glb")
+        const gltfShape_mainStructure  = new GLTFShape("GLB/Decentraland Arena9dboz.glb")
         gltfShape_mainStructure .withCollisions = true
         gltfShape_mainStructure .isPointerBlocker = true
         gltfShape_mainStructure .visible = true
