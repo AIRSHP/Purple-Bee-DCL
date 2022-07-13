@@ -559,5 +559,35 @@ gltfShape_tunnelbackwall.isPointerBlocker = true
 gltfShape_tunnelbackwall.visible = true
 tunnelbackwall.addComponentOrReplace(gltfShape_tunnelbackwall)
 
+/*
+const tunnelText = new Entity('tunnelText')
+engine.addEntity(tunnelText )
+tunnelText.setParent(_scene)
+tunnelText.addComponent(new TextShape("Not seeing anyone? Open chat window and type: /changerealm dg"))
+tunnelText.getComponent(TextShape).font = new Font(Fonts.SansSerif)
+tunnelText.getComponent(TextShape).fontSize = 10
+tunnelText.getComponent(TextShape).width = 200
+tunnelText.getComponent(Transform).rotation.set(0,0,0,0)
+tunnelText.addComponent(new Transform())
+tunnelText.getComponent(Transform).position.set(8, 8, 8)
+*/
+
+          const imagePanelTunnelSize = 3.4
+          const imagePanelTunnel = new Entity('imagePanelTunnel')
+          engine.addEntity(imagePanelTunnel)
+          imagePanelTunnel.setParent(_scene)
+          const imagePanelTunnel_transform = new Transform({
+            position: new Vector3(8, 0, 30.9),
+            rotation: new Quaternion(0, .5, 0, 0),
+            scale: new Vector3(imagePanelTunnelSize ,imagePanelTunnelSize ,imagePanelTunnelSize )
+          })
+          imagePanelTunnel.addComponentOrReplace(imagePanelTunnel_transform)
+          const imagePanelTunnelScript = new ImagePanel()
+          imagePanelTunnelScript.init()
+          imagePanelTunnelScript.spawn(imagePanelTunnel, {
+              "image":"https://purplebee.org/wp-content/uploads/DCL-Panel-tunnel.png?"+imageCacheBust,
+              "url":"https://purplebee.org/?dclpanel=tunnel"
+          }, createChannel(channelId, imagePanelTunnel, channelBus))
+
 
 //end
